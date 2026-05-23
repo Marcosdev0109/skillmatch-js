@@ -180,7 +180,7 @@ function exibirAnaliseCompleta(candidato, vagas) {
     return resultados;
 }
 
-// ==================== SIMULAÇÃO ASSÍNCRONA (RF14) ====================
+// ==================== SIMULAÇÃO ASSÍNCRONA (RF14) ======================
 function buscarVagasSimuladas() {
     return new Promise((resolve) => {
         console.log("\n🔄 Carregando vagas...");
