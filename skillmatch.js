@@ -104,3 +104,39 @@ function exibirAnaliseCompleta(candidato, vagas) {
 
 // ==================== EXECUÇÃO PRINCIPAL ====================
 const resultadosDasVagas = exibirAnaliseCompleta(candidato, vagas);
+
+// ==================== RECOMENDAÇÃO DE ESTUDO ====================
+function gerarRecomendacaoEstudo(resultados) {
+    // Junta todas as habilidades faltantes em um array
+    const todasHabilidadesFaltantes = resultados.reduce((acumulador, vagaAtual) => {
+        return acumulador.concat(vagaAtual.habilidadesFaltantes);
+    }, []);
+
+    // Remove duplicatas usando Set e spread
+    const habilidadesUnicas = [...new Set(todasHabilidadesFaltantes)];
+
+    if (habilidadesUnicas.length > 0) {
+        console.log(`\n📚 RECOMENDAÇÃO DE ESTUDO:`);
+        console.log(`Priorize estudar: ${habilidadesUnicas.join(', ')}.`);
+        console.log(`Esses conteúdos são importantes para as vagas analisadas.`);
+    } else {
+        console.log(`\n🎉 PARABÉNS! Você já possui todas as habilidades exigidas pelas vagas analisadas.`);
+    }
+}
+
+    // Recomendação de estudo (RF07)
+    gerarRecomendacaoEstudo(resultados);
+
+        // Encontra e exibe a vaga mais compatível
+    const melhorVaga = encontrarMelhorVaga(resultados);
+    console.log(`\n🏆 VAGA MAIS COMPATÍVEL 🏆`);
+    console.log(`${melhorVaga.empresa} - ${melhorVaga.cargo}`);
+    console.log(`📊 Compatibilidade: ${melhorVaga.compatibilidade}%`);
+    console.log(`🏷️  ${classificarCompatibilidade(melhorVaga.compatibilidade)}`);
+
+    // Recomendação de estudo (RF07)
+    gerarRecomendacaoEstudo(resultados);
+
+    return resultados;
+
+    
