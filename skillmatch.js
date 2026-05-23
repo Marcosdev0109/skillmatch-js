@@ -182,3 +182,32 @@ console.log("=== Demonstração de classes e herança ===");
 console.log(vagaFrontEndExemplo.exibirResumo());   // método herdado
 console.log(vagaFrontEndExemplo.exibirNivel());    // método próprio
 
+// ==================== CLOSURE ====================
+function criarContadorDeAnalises() {
+    let contador = 0;  // variável mantida no closure
+    return function() {
+        contador++;
+        return contador;
+    };
+}
+
+// ==================== CALLBACK ====================
+function finalizarAnalise(nomeCandidato, callback) {
+    console.log("\n✅ Análise finalizada.");
+    callback(nomeCandidato);
+}
+
+function exibirMensagemFinal(nome) {
+    console.log(`${nome}, revise suas habilidades faltantes e atualize seu plano de estudos.`);
+}
+
+    // ... (código existente da recomendação)
+
+    // Demonstração de closure
+    const contador = criarContadorDeAnalises();
+    console.log(`\n🔢 Número de análises executadas: ${contador()}`);
+
+    // Demonstração de callback
+    finalizarAnalise(candidato.nome, exibirMensagemFinal);
+
+    
