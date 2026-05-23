@@ -56,3 +56,27 @@ Este projeto não requer instalação de dependências ou servidor. Você pode e
 
 ## 🧪 Exemplo de saída no console
 
+Candidato: { nome: "João Marcos...", habilidades: [...] }
+Vagas: [...]
+
+=== Demonstração de classes e herança ===
+Dev Front-End Pleno na empresa StartUp Inovadora - R$ 4500 (Remoto)
+Nível da vaga: Pleno
+
+====== Análise para João Marcos Rodrigues Barbosa ======
+
+🏢 Empresa: TechStart
+📊 Compatibilidade: 100%
+🏷️ Alta compatibilidade ✅
+...
+
+🏆 VAGA MAIS COMPATÍVEL 🏆
+TechStart - Desenvolvedor Front-End Júnior
+...
+
+📚 RECOMENDAÇÃO DE ESTUDO:
+Priorize estudar: Arrays, Objetos, Funções.
+...
+
+✅ Análise finalizada.
+João Marcos..., revise suas habilidades faltantes...
