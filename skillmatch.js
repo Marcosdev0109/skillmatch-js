@@ -210,4 +210,26 @@ function exibirMensagemFinal(nome) {
     // Demonstração de callback
     finalizarAnalise(candidato.nome, exibirMensagemFinal);
 
-    
+    // ==================== SIMULAÇÃO ASSÍNCRONA ====================
+function buscarVagasSimuladas() {
+    return new Promise((resolve) => {
+        console.log("🔄 Carregando vagas...");
+        setTimeout(() => {
+            console.log("✅ Vagas carregadas com sucesso!");
+            resolve(vagas);  // retorna o array original de vagas
+        }, 1500);
+    });
+}
+
+async function iniciarSistema() {
+    const vagasCarregadas = await buscarVagasSimuladas();
+    // Agora executa a análise com as vagas carregadas
+    const resultados = exibirAnaliseCompleta(candidato, vagasCarregadas);
+    return resultados;
+}
+
+const resultadosDasVagas = exibirAnaliseCompleta(candidato, vagas);
+
+// Execução principal assíncrona
+iniciarSistema();
+
