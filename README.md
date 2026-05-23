@@ -79,3 +79,26 @@ Priorize estudar: Arrays, Objetos, Funções.
 
 ✅ Análise finalizada.
 João Marcos..., revise suas habilidades faltantes...
+
+
+## 📹 Vídeo de demonstração
+
+[Clique aqui para assistir ao vídeo explicativo](LINK_DO_SEU_VIDEO_AQUI)
+
+O vídeo mostra o funcionamento do sistema, a organização do Kanban, as branches criadas e melhorias possíveis.
+
+## 🛠️ Ferramentas utilizadas
+
+- Visual Studio Code com extensões: `JavaScript (ES6) code snippets`, `Prettier`
+- Git e GitHub para versionamento
+- GitHub Projects / Trello para Kanban
+
+## 👨‍💻 Autor
+
+João Marcos Rodrigues Barbosa  
+GitHub: [Marcosdev0109](https://github.com/Marcosdev0109)
+
+## 📄 Licença
+
+Este projeto é apenas para fins educacionais.
+
