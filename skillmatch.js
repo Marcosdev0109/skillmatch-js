@@ -108,4 +108,17 @@ function classificarCompatibilidade(percentual) {
         // ... resto igual
     });
 }
+// ==================== MELHOR VAGA ====================
+function encontrarMelhorVaga(resultados) {
+    return resultados.reduce((melhor, atual) => {
+        return (atual.compatibilidade > melhor.compatibilidade) ? atual : melhor;
+    });
+}
+
+    const melhor = encontrarMelhorVaga(resultados);
+    console.log(`\n VAGA MAIS COMPATÍVEL `);
+    console.log(`${melhor.empresa} - ${melhor.cargo}`);
+    console.log(`Compatibilidade: ${melhor.compatibilidade}%`);
+    console.log(`${classificarCompatibilidade(melhor.compatibilidade)}`);
+
 
