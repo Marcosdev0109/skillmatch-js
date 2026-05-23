@@ -1,4 +1,3 @@
-# skillmatch-js
 # SkillMatch JS - Simulador de Compatibilidade de Vagas
 
 ## 📌 Sobre o projeto
