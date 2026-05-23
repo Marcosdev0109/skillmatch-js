@@ -139,4 +139,46 @@ function gerarRecomendacaoEstudo(resultados) {
 
     return resultados;
 
-    
+    // ==================== CLASSES (POO) ====================
+// Classe base Vaga (RF09)
+class Vaga {
+    constructor(empresa, cargo, requisitos, salario, modalidade) {
+        this.empresa = empresa;
+        this.cargo = cargo;
+        this.requisitos = requisitos;
+        this.salario = salario;
+        this.modalidade = modalidade;
+    }
+
+    // Método que usa 'this' (RF11)
+    exibirResumo() {
+        return `${this.cargo} na empresa ${this.empresa} - R$ ${this.salario} (${this.modalidade})`;
+    }
+}
+
+// Classe que herda de Vaga (RF10)
+class VagaFrontEnd extends Vaga {
+    constructor(empresa, cargo, requisitos, salario, modalidade, nivel) {
+        super(empresa, cargo, requisitos, salario, modalidade); // chama construtor da classe mãe
+        this.nivel = nivel;
+    }
+
+    // Novo método específico
+    exibirNivel() {
+        return `Nível da vaga: ${this.nivel}`;
+    }
+}
+
+// Demonstração da classe VagaFrontEnd (não interfere na análise principal)
+const vagaFrontEndExemplo = new VagaFrontEnd(
+    "StartUp Inovadora",
+    "Dev Front-End Pleno",
+    ["JavaScript", "React", "CSS"],
+    4500,
+    "Remoto",
+    "Pleno"
+);
+console.log("=== Demonstração de classes e herança ===");
+console.log(vagaFrontEndExemplo.exibirResumo());   // método herdado
+console.log(vagaFrontEndExemplo.exibirNivel());    // método próprio
+
