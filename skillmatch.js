@@ -1,5 +1,4 @@
-//Perfil do candidato
-
+// ==================== DADOS ====================
 const candidato = {
     nome: "João Marcos Rodrigues Barbosa",
     area: "Front-End",
@@ -7,7 +6,6 @@ const candidato = {
     experienciaMeses: 6
 };
 
-// Lista de vagas disponíveis
 const vagas = [
     {
         id: 1,
@@ -35,35 +33,44 @@ const vagas = [
     }
 ];
 
-// Exibir no console para testar
 console.log("Candidato:", candidato);
 console.log("Vagas:", vagas);
 
 // ==================== FUNÇÃO PARA ANALISAR UMA VAGA ====================
-
 function analisarVaga(candidato, vaga) {
-    // 1. Habilidades que o candidato possui e que a vaga exige
     const habilidadesEncontradas = candidato.habilidades.filter(habilidade =>
         vaga.requisitos.includes(habilidade)
     );
-
-    // 2. Percentual de compatibilidade
     const totalRequisitos = vaga.requisitos.length;
     const compatibilidade = (habilidadesEncontradas.length / totalRequisitos) * 100;
-
-    // 3. Habilidades que a vaga exige mas o candidato não tem
     const habilidadesFaltantes = vaga.requisitos.filter(requisito =>
         !candidato.habilidades.includes(requisito)
     );
-
-    // Retorna um objeto com os resultados
     return {
         empresa: vaga.empresa,
         cargo: vaga.cargo,
-        compatibilidade: Math.round(compatibilidade), // arredondado
+        compatibilidade: Math.round(compatibilidade),
         habilidadesEncontradas: habilidadesEncontradas,
         habilidadesFaltantes: habilidadesFaltantes
     };
+}
+
+// ==================== CLASSIFICAÇÃO ====================
+function classificarCompatibilidade(percentual) {
+    if (percentual >= 80) {
+        return "Alta compatibilidade ✅";
+    } else if (percentual >= 50) {
+        return "Média compatibilidade ⚠️";
+    } else {
+        return "Baixa compatibilidade ❌";
+    }
+}
+
+// ==================== MELHOR VAGA ====================
+function encontrarMelhorVaga(resultados) {
+    return resultados.reduce((melhor, atual) => {
+        return (atual.compatibilidade > melhor.compatibilidade) ? atual : melhor;
+    });
 }
 
 // ==================== ANALISAR TODAS AS VAGAS ====================
@@ -73,52 +80,27 @@ function exibirAnaliseCompleta(candidato, vagas) {
     // Aplica a função analisarVaga para cada vaga usando map
     const resultados = vagas.map(vaga => analisarVaga(candidato, vaga));
 
-    // Exibe cada resultado com forEach
+    // Exibe cada resultado com forEach, já incluindo a classificação
     resultados.forEach(resultado => {
-        console.log(` Empresa: ${resultado.empresa}`);
-        console.log(` Cargo: ${resultado.cargo}`);
-        console.log(` Compatibilidade: ${resultado.compatibilidade}%`);
-        console.log(` Habilidades encontradas: ${resultado.habilidadesEncontradas.join(', ') || 'Nenhuma'}`);
-        console.log(` Habilidades faltantes: ${resultado.habilidadesFaltantes.join(', ') || 'Nenhuma'}`);
+        const classificacao = classificarCompatibilidade(resultado.compatibilidade);
+        console.log(`🏢 Empresa: ${resultado.empresa}`);
+        console.log(`💼 Cargo: ${resultado.cargo}`);
+        console.log(`📊 Compatibilidade: ${resultado.compatibilidade}%`);
+        console.log(`🏷️  ${classificacao}`);
+        console.log(`✅ Habilidades encontradas: ${resultado.habilidadesEncontradas.join(', ') || 'Nenhuma'}`);
+        console.log(`❌ Habilidades faltantes: ${resultado.habilidadesFaltantes.join(', ') || 'Nenhuma'}`);
         console.log('-----------------------------------');
     });
 
-    return resultados; 
+    // Encontra e exibe a vaga mais compatível
+    const melhorVaga = encontrarMelhorVaga(resultados);
+    console.log(`\n🏆 VAGA MAIS COMPATÍVEL 🏆`);
+    console.log(`${melhorVaga.empresa} - ${melhorVaga.cargo}`);
+    console.log(`📊 Compatibilidade: ${melhorVaga.compatibilidade}%`);
+    console.log(`🏷️  ${classificarCompatibilidade(melhorVaga.compatibilidade)}`);
 
-// Executar
+    return resultados; // retorna para uso futuro
+}
+
+// ==================== EXECUÇÃO PRINCIPAL ====================
 const resultadosDasVagas = exibirAnaliseCompleta(candidato, vagas);
-
-// ==================== CLASSIFICAÇÃO ====================
-function classificarCompatibilidade(percentual) {
-    if (percentual >= 80) {
-        return "Alta compatibilidade";
-    } else if (percentual >= 50) {
-        return "Média compatibilidade";
-    } else {
-        return "Baixa compatibilidade";
-    }
-}
-
-    resultados.forEach(resultado => {
-        const classificacao = classificarCompatibilidade(resultado.compatibilidade);
-        console.log(` Empresa: ${resultado.empresa}`);
-        console.log(` Cargo: ${resultado.cargo}`);
-        console.log(` Compatibilidade: ${resultado.compatibilidade}%`);
-        console.log(` ${classificacao}`);
-        // ... resto igual
-    });
-}
-// ==================== MELHOR VAGA ====================
-function encontrarMelhorVaga(resultados) {
-    return resultados.reduce((melhor, atual) => {
-        return (atual.compatibilidade > melhor.compatibilidade) ? atual : melhor;
-    });
-}
-
-    const melhor = encontrarMelhorVaga(resultados);
-    console.log(`\n VAGA MAIS COMPATÍVEL `);
-    console.log(`${melhor.empresa} - ${melhor.cargo}`);
-    console.log(`Compatibilidade: ${melhor.compatibilidade}%`);
-    console.log(`${classificarCompatibilidade(melhor.compatibilidade)}`);
-
-
