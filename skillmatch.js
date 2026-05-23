@@ -87,3 +87,25 @@ function exibirAnaliseCompleta(candidato, vagas) {
 
 // Executar
 const resultadosDasVagas = exibirAnaliseCompleta(candidato, vagas);
+
+// ==================== CLASSIFICAÇÃO ====================
+function classificarCompatibilidade(percentual) {
+    if (percentual >= 80) {
+        return "Alta compatibilidade";
+    } else if (percentual >= 50) {
+        return "Média compatibilidade";
+    } else {
+        return "Baixa compatibilidade";
+    }
+}
+
+    resultados.forEach(resultado => {
+        const classificacao = classificarCompatibilidade(resultado.compatibilidade);
+        console.log(` Empresa: ${resultado.empresa}`);
+        console.log(` Cargo: ${resultado.cargo}`);
+        console.log(` Compatibilidade: ${resultado.compatibilidade}%`);
+        console.log(` ${classificacao}`);
+        // ... resto igual
+    });
+}
+
