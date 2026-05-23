@@ -73,48 +73,12 @@ function encontrarMelhorVaga(resultados) {
     });
 }
 
-// ==================== ANALISAR TODAS AS VAGAS ====================
-function exibirAnaliseCompleta(candidato, vagas) {
-    console.log(`\n====== Análise para ${candidato.nome} ======\n`);
-
-    // Aplica a função analisarVaga para cada vaga usando map
-    const resultados = vagas.map(vaga => analisarVaga(candidato, vaga));
-
-    // Exibe cada resultado com forEach, já incluindo a classificação
-    resultados.forEach(resultado => {
-        const classificacao = classificarCompatibilidade(resultado.compatibilidade);
-        console.log(`🏢 Empresa: ${resultado.empresa}`);
-        console.log(`💼 Cargo: ${resultado.cargo}`);
-        console.log(`📊 Compatibilidade: ${resultado.compatibilidade}%`);
-        console.log(`🏷️  ${classificacao}`);
-        console.log(`✅ Habilidades encontradas: ${resultado.habilidadesEncontradas.join(', ') || 'Nenhuma'}`);
-        console.log(`❌ Habilidades faltantes: ${resultado.habilidadesFaltantes.join(', ') || 'Nenhuma'}`);
-        console.log('-----------------------------------');
-    });
-
-    // Encontra e exibe a vaga mais compatível
-    const melhorVaga = encontrarMelhorVaga(resultados);
-    console.log(`\n🏆 VAGA MAIS COMPATÍVEL 🏆`);
-    console.log(`${melhorVaga.empresa} - ${melhorVaga.cargo}`);
-    console.log(`📊 Compatibilidade: ${melhorVaga.compatibilidade}%`);
-    console.log(`🏷️  ${classificarCompatibilidade(melhorVaga.compatibilidade)}`);
-
-    return resultados; // retorna para uso futuro
-}
-
-// ==================== EXECUÇÃO PRINCIPAL ====================
-const resultadosDasVagas = exibirAnaliseCompleta(candidato, vagas);
-
 // ==================== RECOMENDAÇÃO DE ESTUDO ====================
 function gerarRecomendacaoEstudo(resultados) {
-    // Junta todas as habilidades faltantes em um array
     const todasHabilidadesFaltantes = resultados.reduce((acumulador, vagaAtual) => {
         return acumulador.concat(vagaAtual.habilidadesFaltantes);
     }, []);
-
-    // Remove duplicatas usando Set e spread
     const habilidadesUnicas = [...new Set(todasHabilidadesFaltantes)];
-
     if (habilidadesUnicas.length > 0) {
         console.log(`\n📚 RECOMENDAÇÃO DE ESTUDO:`);
         console.log(`Priorize estudar: ${habilidadesUnicas.join(', ')}.`);
@@ -124,23 +88,7 @@ function gerarRecomendacaoEstudo(resultados) {
     }
 }
 
-    // Recomendação de estudo (RF07)
-    gerarRecomendacaoEstudo(resultados);
-
-        // Encontra e exibe a vaga mais compatível
-    const melhorVaga = encontrarMelhorVaga(resultados);
-    console.log(`\n🏆 VAGA MAIS COMPATÍVEL 🏆`);
-    console.log(`${melhorVaga.empresa} - ${melhorVaga.cargo}`);
-    console.log(`📊 Compatibilidade: ${melhorVaga.compatibilidade}%`);
-    console.log(`🏷️  ${classificarCompatibilidade(melhorVaga.compatibilidade)}`);
-
-    // Recomendação de estudo (RF07)
-    gerarRecomendacaoEstudo(resultados);
-
-    return resultados;
-
-    // ==================== CLASSES (POO) ====================
-// Classe base Vaga (RF09)
+// ==================== CLASSES (POO) ====================
 class Vaga {
     constructor(empresa, cargo, requisitos, salario, modalidade) {
         this.empresa = empresa;
@@ -149,27 +97,22 @@ class Vaga {
         this.salario = salario;
         this.modalidade = modalidade;
     }
-
-    // Método que usa 'this' (RF11)
     exibirResumo() {
         return `${this.cargo} na empresa ${this.empresa} - R$ ${this.salario} (${this.modalidade})`;
     }
 }
 
-// Classe que herda de Vaga (RF10)
 class VagaFrontEnd extends Vaga {
     constructor(empresa, cargo, requisitos, salario, modalidade, nivel) {
-        super(empresa, cargo, requisitos, salario, modalidade); // chama construtor da classe mãe
+        super(empresa, cargo, requisitos, salario, modalidade);
         this.nivel = nivel;
     }
-
-    // Novo método específico
     exibirNivel() {
         return `Nível da vaga: ${this.nivel}`;
     }
 }
 
-// Demonstração da classe VagaFrontEnd (não interfere na análise principal)
+// Demonstração das classes (não interfere na análise principal)
 const vagaFrontEndExemplo = new VagaFrontEnd(
     "StartUp Inovadora",
     "Dev Front-End Pleno",
@@ -178,13 +121,13 @@ const vagaFrontEndExemplo = new VagaFrontEnd(
     "Remoto",
     "Pleno"
 );
-console.log("=== Demonstração de classes e herança ===");
-console.log(vagaFrontEndExemplo.exibirResumo());   // método herdado
-console.log(vagaFrontEndExemplo.exibirNivel());    // método próprio
+console.log("\n=== Demonstração de classes e herança ===");
+console.log(vagaFrontEndExemplo.exibirResumo());
+console.log(vagaFrontEndExemplo.exibirNivel());
 
 // ==================== CLOSURE ====================
 function criarContadorDeAnalises() {
-    let contador = 0;  // variável mantida no closure
+    let contador = 0;
     return function() {
         contador++;
         return contador;
@@ -201,35 +144,62 @@ function exibirMensagemFinal(nome) {
     console.log(`${nome}, revise suas habilidades faltantes e atualize seu plano de estudos.`);
 }
 
-    // ... (código existente da recomendação)
+// ==================== ANÁLISE COMPLETA (agora com tudo integrado) ====================
+function exibirAnaliseCompleta(candidato, vagas) {
+    console.log(`\n====== Análise para ${candidato.nome} ======\n`);
 
-    // Demonstração de closure
+    const resultados = vagas.map(vaga => analisarVaga(candidato, vaga));
+
+    resultados.forEach(resultado => {
+        const classificacao = classificarCompatibilidade(resultado.compatibilidade);
+        console.log(`🏢 Empresa: ${resultado.empresa}`);
+        console.log(`💼 Cargo: ${resultado.cargo}`);
+        console.log(`📊 Compatibilidade: ${resultado.compatibilidade}%`);
+        console.log(`🏷️  ${classificacao}`);
+        console.log(`✅ Habilidades encontradas: ${resultado.habilidadesEncontradas.join(', ') || 'Nenhuma'}`);
+        console.log(`❌ Habilidades faltantes: ${resultado.habilidadesFaltantes.join(', ') || 'Nenhuma'}`);
+        console.log('-----------------------------------');
+    });
+
+    const melhorVaga = encontrarMelhorVaga(resultados);
+    console.log(`\n🏆 VAGA MAIS COMPATÍVEL 🏆`);
+    console.log(`${melhorVaga.empresa} - ${melhorVaga.cargo}`);
+    console.log(`📊 Compatibilidade: ${melhorVaga.compatibilidade}%`);
+    console.log(`🏷️  ${classificarCompatibilidade(melhorVaga.compatibilidade)}`);
+
+    // Recomendação de estudo (RF07)
+    gerarRecomendacaoEstudo(resultados);
+
+    // Closure (RF13)
     const contador = criarContadorDeAnalises();
     console.log(`\n🔢 Número de análises executadas: ${contador()}`);
 
-    // Demonstração de callback
+    // Callback (RF12)
     finalizarAnalise(candidato.nome, exibirMensagemFinal);
 
-    // ==================== SIMULAÇÃO ASSÍNCRONA ====================
+    return resultados;
+}
+
+// ==================== SIMULAÇÃO ASSÍNCRONA (RF14) ====================
 function buscarVagasSimuladas() {
     return new Promise((resolve) => {
-        console.log("🔄 Carregando vagas...");
+        console.log("\n🔄 Carregando vagas...");
         setTimeout(() => {
             console.log("✅ Vagas carregadas com sucesso!");
-            resolve(vagas);  // retorna o array original de vagas
+            resolve(vagas);
         }, 1500);
     });
 }
 
 async function iniciarSistema() {
     const vagasCarregadas = await buscarVagasSimuladas();
-    // Agora executa a análise com as vagas carregadas
     const resultados = exibirAnaliseCompleta(candidato, vagasCarregadas);
     return resultados;
 }
 
-const resultadosDasVagas = exibirAnaliseCompleta(candidato, vagas);
+// ==================== EXECUÇÃO PRINCIPAL ====================
+// Comente a linha abaixo se quiser apenas a versão assíncrona
+// const resultadosDasVagas = exibirAnaliseCompleta(candidato, vagas);
 
-// Execução principal assíncrona
+// Execução correta: apenas a assíncrona
 iniciarSistema();
-
