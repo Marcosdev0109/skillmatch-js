@@ -1,104 +1,110 @@
-# SkillMatch JS - Simulador de Compatibilidade de Vagas
+# SkillMatch Web
 
-## 📌 Sobre o projeto
+Aplicação web que compara o perfil de um candidato com vagas de front-end e calcula a compatibilidade percentual, classificando cada oportunidade e sugerindo habilidades para estudar.
 
-O **SkillMatch JS** é um simulador desenvolvido em JavaScript puro que compara as habilidades de um candidato com os requisitos de vagas de front-end júnior. O sistema calcula percentual de compatibilidade, classifica a aderência, lista habilidades faltantes, recomenda estudos e aplica conceitos avançados de JavaScript como POO, herança, closures, Promises e async/await.
+> Evolução do **SkillMatch JS** da Semana 06: o mesmo motor de compatibilidade, agora com interface no navegador.
 
-## 🎯 Objetivo
+## Problema que resolve
 
-Este projeto foi desenvolvido como **Mini-Projeto Avaliativo** do módulo 01 do curso Desenvolvedor Front-End React (Turma 01/02), com o objetivo de praticar:
+O RH não vai abrir o console do navegador para analisar candidatos. O SkillMatch Web transforma o motor da Semana 06 em uma interface acessível, responsiva, persistente e fácil de usar.
 
-- Lógica de programação
-- Tipos de dados, condicionais, operadores
-- Funções e arrow functions
-- Métodos de array (`map`, `filter`, `reduce`, `forEach`)
-- Objetos e classes
-- Herança e uso do `this`
-- Callbacks e closures
-- Promises e async/await
-- Controle de versão com Git/GitHub
-- Organização com Kanban
+## Tecnologias e técnicas
 
-## 🚀 Como executar
+| Área | Técnicas |
+|------|----------|
+| HTML | Landmarks semânticos, um `h1`, SEO, acessibilidade |
+| CSS | Flexbox, mobile-first, `clamp()`, tema claro/escuro |
+| JavaScript | Módulos ES, POO, arrays, callbacks, closure, async/await |
+| Persistência | `localStorage` com `JSON.stringify` e `JSON.parse` |
+| Rede | `fetch` com estados carregando, vazio e erro |
 
-Este projeto não requer instalação de dependências ou servidor. Você pode executá-lo diretamente no console do navegador.
+## Estrutura
 
-1. Acesse o repositório GitHub: [https://github.com/Marcosdev0109/skillmatch-js](https://github.com/Marcosdev0109/skillmatch-js)
-2. Abra o arquivo `skillmatch.js`
-3. Selecione e copie todo o código
-4. Abra o Google Chrome e pressione `F12` (ou `Ctrl + Shift + J`)
-5. Vá até a aba **Console**
-6. Cole o código e pressione `Enter`
-7. O sistema começará a executar e exibirá os resultados diretamente no console.
+```text
+skillmatch-web/
+├── index.html
+├── Readme.md
+├── package.json
+└── assets/
+    ├── styles/
+    │   └── index.style.css
+    ├── scripts/
+    │   ├── main.js
+    │   ├── motor.js
+    │   ├── ui.js
+    │   └── dados.js
+    ├── dados/
+    │   └── vagas.json
+    └── img/
+        └── logo.svg
+```
 
-## 📂 Estrutura do projeto
+## Como executar
 
+> O projeto usa módulos ES e `fetch`, então não deve ser aberto com `file://`. Use um servidor local.
 
-## 🧠 Conceitos aplicados
+Com Live Server no VS Code:
 
-| Conceito | Onde foi usado |
-|----------|----------------|
-| Objetos | Candidato e vagas |
-| Arrays | Lista de habilidades e requisitos |
-| `map` | Transformar lista de vagas em resultados |
-| `filter` | Encontrar habilidades em comum e faltantes |
-| `reduce` | Calcular melhor vaga e juntar habilidades faltantes |
-| `forEach` | Exibir resultados no console |
-| Classes | `Vaga` e `VagaFrontEnd` |
-| Herança | `VagaFrontEnd extends Vaga` |
-| `this` | Acessar atributos dentro da classe |
-| Closure | `criarContadorDeAnalises` |
-| Callback | `finalizarAnalise` recebendo função |
-| Promise + async/await | `buscarVagasSimuladas` e `iniciarSistema` |
-| Controle de versão | Commits e branches no GitHub |
-| Kanban | Organização das tarefas (Trello/GitHub Projects) |
+1. Abra a pasta do projeto.
+2. Clique com o botão direito em `index.html`.
+3. Escolha **Open with Live Server**.
 
-## 🧪 Exemplo de saída no console
+Com npm:
 
-Candidato: { nome: "João Marcos...", habilidades: [...] }
-Vagas: [...]
+```bash
+npm install
+npm start
+```
 
-=== Demonstração de classes e herança ===
-Dev Front-End Pleno na empresa StartUp Inovadora - R$ 4500 (Remoto)
-Nível da vaga: Pleno
+## Requisitos implementados
 
-====== Análise para João Marcos Rodrigues Barbosa ======
+- Perfil do candidato com nome, área, habilidades e experiência em meses.
+- Catálogo com 5 vagas carregadas de `assets/dados/vagas.json`.
+- Cálculo de compatibilidade, habilidades encontradas e habilidades faltantes.
+- Classificação Alta, Média e Baixa com `if/else`.
+- Melhor vaga com `reduce` e recomendação de estudo com `reduce` + `Set`.
+- POO com `Vaga` e `VagaFrontEnd`, usando herança e sobrescrita de método.
+- Callback em `finalizarAnalise()` e closure em `criarContadorDeAnalises()`.
+- Formulário com `addEventListener`, `preventDefault` e validação acessível.
+- Cards renderizados dinamicamente com `createElement`, `classList` e `append`.
+- Layout responsivo mobile-first com Flexbox.
+- `localStorage` para perfil, tema e ordenação.
+- Bônus: tema claro/escuro persistido e ordenação por compatibilidade, salário ou modalidade.
 
-🏢 Empresa: TechStart
-📊 Compatibilidade: 100%
-🏷️ Alta compatibilidade ✅
-...
+## Motor reaproveitado da Semana 06
 
-🏆 VAGA MAIS COMPATÍVEL 🏆
-TechStart - Desenvolvedor Front-End Júnior
-...
+| Função / Classe | Como aparece no projeto |
+|-----------------|-------------------------|
+| `analisarVaga()` | Calcula compatibilidade com `filter` e `includes` |
+| `classificarCompatibilidade()` | Classifica com `if/else` |
+| `encontrarMelhorVaga()` | Usa `reduce` e experiência como desempate |
+| `gerarRecomendacaoEstudo()` | Junta habilidades faltantes com `reduce` e remove repetidas com `Set` |
+| `Vaga` / `VagaFrontEnd` | POO com herança, `this`, `exibirResumo()` e `exibirNivel()` |
+| `criarContadorDeAnalises()` | Closure para contar análises na sessão |
+| `finalizarAnalise()` | Callback ao terminar a análise |
 
-📚 RECOMENDAÇÃO DE ESTUDO:
-Priorize estudar: Arrays, Objetos, Funções.
-...
+Após o `fetch`, o JSON vira instâncias de `VagaFrontEnd` via `map` + `new`.
 
-✅ Análise finalizada.
-João Marcos..., revise suas habilidades faltantes...
+## `const`, `let` e `var`
 
+- **`const`**: valores que não recebem nova atribuição, como elementos DOM, funções importadas/exportadas e chaves de `localStorage`.
+- **`let`**: estados que mudam durante a execução, como `vagasInstanciadas`, `ultimosResultados` e o contador interno da closure.
+- **`var`**: não utilizado, porque `let` e `const` têm escopo de bloco e deixam o código mais previsível.
 
-## 📹 Vídeo de demonstração
+## Melhorias futuras
 
-[Clique aqui para assistir ao vídeo explicativo](LINK_DO_SEU_VIDEO_AQUI)
+- Criar filtro por modalidade.
+- Mostrar uma barra visual de progresso para cada compatibilidade.
+- Publicar no GitHub Pages e adicionar o link de deploy.
 
-O vídeo mostra o funcionamento do sistema, a organização do Kanban, as branches criadas e melhorias possíveis.
+## Links da entrega
 
-## 🛠️ Ferramentas utilizadas
+| Item | Link |
+|------|------|
+| GitHub | _adicione aqui_ |
+| Trello | _adicione aqui_ |
+| Vídeo | _adicione aqui_ |
 
-- Visual Studio Code com extensões: `JavaScript (ES6) code snippets`, `Prettier`
-- Git e GitHub para versionamento
-- GitHub Projects / Trello para Kanban
+## Autor
 
-## 👨‍💻 Autor
-
-João Marcos Rodrigues Barbosa  
-GitHub: [Marcosdev0109](https://github.com/Marcosdev0109)
-
-## 📄 Licença
-
-Este projeto é apenas para fins educacionais.
-
+João Marcos Rodrigues Barbosa - Módulo 01 - 2026
