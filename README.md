@@ -97,13 +97,14 @@ Após o `fetch`, o JSON vira instâncias de `VagaFrontEnd` via `map` + `new`.
 - Mostrar uma barra visual de progresso para cada compatibilidade.
 - Publicar no GitHub Pages e adicionar o link de deploy.
 
+
 ## Links da entrega
 
 | Item | Link |
 |------|------|
-| GitHub | _adicione aqui_ |
-| Trello | _adicione aqui_ |
-| Vídeo | _adicione aqui_ |
+| GitHub | [Acessar repositório](https://github.com/Marcosdev0109/skillmatch-js) |
+| Trello | [Acessar quadro Kanban](https://trello.com/b/McgrxS3M) |
+| Vídeo | Aguardando gravação |
 
 ## Autor
 
