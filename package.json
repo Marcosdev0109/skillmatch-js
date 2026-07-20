@@ -1,0 +1,14 @@
+{
+  "name": "skillmatch-web",
+  "version": "1.0.0",
+  "description": "SkillMatch Web: compatibilidade entre candidatos e vagas de front-end",
+  "scripts": {
+    "start": "live-server --port=5500 --open=index.html"
+  },
+  "keywords": ["front-end", "javascript", "skillmatch"],
+  "author": "João Marcos Rodrigues Barbosa",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
