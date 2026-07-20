@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "empresa": "TechStart",
+    "cargo": "Desenvolvedor Front-End Júnior",
+    "requisitos": ["JavaScript", "GitHub", "Lógica de Programação"],
+    "salario": 2800,
+    "modalidade": "Remoto",
+    "nivel": "Júnior",
+    "stack": "HTML, CSS e JavaScript"
+  },
+  {
+    "id": 2,
+    "empresa": "CodeLab",
+    "cargo": "Estágio Front-End",
+    "requisitos": ["JavaScript", "Kanban", "GitHub"],
+    "salario": 1800,
+    "modalidade": "Híbrido",
+    "nivel": "Estágio",
+    "stack": "JavaScript e métodos ágeis"
+  },
+  {
+    "id": 3,
+    "empresa": "WebSolutions",
+    "cargo": "Programador JavaScript Júnior",
+    "requisitos": ["JavaScript", "Arrays", "Objetos", "Funções"],
+    "salario": 3000,
+    "modalidade": "Presencial",
+    "nivel": "Júnior",
+    "stack": "JavaScript puro"
+  },
+  {
+    "id": 4,
+    "empresa": "FrontHub",
+    "cargo": "Dev Front-End Pleno",
+    "requisitos": ["JavaScript", "React", "CSS", "GitHub"],
+    "salario": 4500,
+    "modalidade": "Remoto",
+    "nivel": "Pleno",
+    "stack": "React e CSS"
+  },
+  {
+    "id": 5,
+    "empresa": "PixelLab",
+    "cargo": "UI Developer",
+    "requisitos": ["JavaScript", "CSS", "HTML", "Acessibilidade", "SEO"],
+    "salario": 3800,
+    "modalidade": "Remoto",
+    "nivel": "Júnior",
+    "stack": "Interface e acessibilidade"
+  }
+]

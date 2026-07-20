@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkillMatch Web: compare suas habilidades com vagas de front-end e receba recomendações de estudo personalizadas.">
+  <title>SkillMatch Web | Compatibilidade com Vagas de Front-end</title>
+  <link rel="stylesheet" href="./assets/styles/index.style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="cabecalho__conteudo">
+      <img
+        src="./assets/img/logo.svg"
+        alt="SkillMatch, logo com conexão entre habilidades e vagas"
+        class="cabecalho__logo"
+        width="48"
+        height="48"
+      >
+      <div class="cabecalho__texto">
+        <p class="cabecalho__marca">SkillMatch Web</p>
+        <p class="cabecalho__subtitulo">Encontre a vaga ideal para o seu perfil</p>
+      </div>
+      <button
+        type="button"
+        id="btn-tema"
+        class="btn-tema"
+        aria-label="Alternar entre tema claro e escuro"
+        title="Alternar tema"
+      >
+        <span aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo-principal" class="principal">
+    <section class="secao secao--perfil" aria-labelledby="titulo-perfil">
+      <h1 id="titulo-perfil">Monte seu perfil de candidato</h1>
+      <p class="secao__descricao">
+        Informe suas habilidades e descubra quais vagas de front-end combinam com você.
+      </p>
+
+      <form id="form-perfil" class="formulario" novalidate>
+        <div class="formulario__grupo">
+          <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            required
+            autocomplete="name"
+            placeholder="Ex.: Ana Silva"
+            aria-describedby="erro-nome"
+          >
+          <p id="erro-nome" class="formulario__erro" role="alert" aria-live="polite"></p>
+        </div>
+
+        <div class="formulario__grupo">
+          <label for="area">Área de atuação <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="area"
+            name="area"
+            required
+            placeholder="Ex.: Front-end Júnior"
+            aria-describedby="erro-area"
+          >
+          <p id="erro-area" class="formulario__erro" role="alert" aria-live="polite"></p>
+        </div>
+
+        <div class="formulario__grupo">
+          <label for="experiencia">Experiência (meses)</label>
+          <input
+            type="number"
+            id="experiencia"
+            name="experiencia"
+            min="0"
+            max="600"
+            value="0"
+            placeholder="Ex.: 12"
+            aria-describedby="dica-experiencia"
+          >
+          <p id="dica-experiencia" class="formulario__dica">
+            Usado como critério de desempate entre vagas com a mesma compatibilidade.
+          </p>
+        </div>
+
+        <div class="formulario__grupo">
+          <label for="habilidades">Habilidades <span aria-hidden="true">*</span></label>
+          <textarea
+            id="habilidades"
+            name="habilidades"
+            required
+            rows="4"
+            placeholder="Separe por vírgula: JavaScript, GitHub, React, Kanban..."
+            aria-describedby="erro-habilidades dica-habilidades"
+          ></textarea>
+          <p id="dica-habilidades" class="formulario__dica">Informe ao menos uma habilidade.</p>
+          <p id="erro-habilidades" class="formulario__erro" role="alert" aria-live="polite"></p>
+        </div>
+
+        <button type="submit" class="btn btn--primario">Analisar compatibilidade</button>
+      </form>
+
+      <aside id="card-perfil" class="card-perfil" aria-live="polite" hidden></aside>
+    </section>
+
+    <section class="secao secao--resultados" aria-labelledby="titulo-resultados">
+      <div class="secao__cabecalho">
+        <h2 id="titulo-resultados">Vagas compatíveis</h2>
+        <div class="filtros" id="filtros" hidden>
+          <label for="ordenacao" class="filtros__label">Ordenar por</label>
+          <select id="ordenacao" name="ordenacao" aria-label="Ordenar vagas">
+            <option value="compatibilidade">Compatibilidade</option>
+            <option value="salario">Salário</option>
+            <option value="modalidade">Modalidade</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="status-vagas" class="status" role="status" aria-live="polite"></div>
+
+      <article id="destaque-melhor" class="destaque" hidden aria-live="polite"></article>
+
+      <div id="lista-vagas" class="lista-vagas" aria-label="Lista de vagas"></div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>
+      <img src="./assets/img/logo.svg" alt="" width="24" height="24" class="rodape__icone" aria-hidden="true">
+      SkillMatch Web &copy; 2026 - Projeto Módulo 01
+    </p>
+    <p class="rodape__info">
+      <span id="contador-analises" aria-live="polite"></span>
+    </p>
+    <p id="mensagem-final" class="rodape__mensagem" aria-live="polite"></p>
+  </footer>
+
+  <script type="module" src="./assets/scripts/main.js"></script>
+</body>
+</html>
